@@ -1,3 +1,4 @@
+// Comment - 0004
 const authorService = require('../services/authorService');
 
 // Create an author
