@@ -3,6 +3,7 @@ const authorService = require('../services/authorService');
 // Create an author
 // Comment - 0001
 // Comment - 0002
+// Comment - 0003
 exports.createAuthor = async (req, res) => {
   try {
     const { name, nationality } = req.body;
