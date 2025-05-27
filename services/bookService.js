@@ -22,11 +22,13 @@ exports.getBooksByAuthor = async (authorId) => {
   return await Book.find({ author_id: authorId }).populate('author_id', 'name');
 };
 
-exports.updateBook = async (id, title, publication_year, author_id) => {
-  const author = await Author.findById(author_id);
-  if (!author) throw new Error('Author not found');
+exports.updateBook = async (id, updateData) => {
+  if (updateData.author_id) {
+    const author = await Author.findById(updateData.author_id);
+    if (!author) throw new Error('Author not found');
+  }
   
-  return await Book.findByIdAndUpdate(id, { title, publication_year, author_id }, { new: true });
+  return await Book.findByIdAndUpdate(id, updateData, { new: true });
 };
 
 exports.deleteBook = async (id) => {
