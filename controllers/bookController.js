@@ -70,3 +70,16 @@ exports.deleteBook = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+exports.patchBook = async (req, res) => {
+  try {
+    const updatedFields = req.body;
+    const updatedBook = await bookService.patchBook(req.params.id, updatedFields);
+    if (!updatedBook) {
+      return res.status(404).json({ message: 'Book not found' });
+    }
+    res.status(200).json(updatedBook);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

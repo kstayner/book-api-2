@@ -32,3 +32,7 @@ exports.updateBook = async (id, title, publication_year, author_id) => {
 exports.deleteBook = async (id) => {
   return await Book.findByIdAndDelete(id);
 };
+
+exports.patchBook = async (id, updatedFields) => {
+  return await Book.findByIdAndUpdate(id, updatedFields, { new: true });
+};
