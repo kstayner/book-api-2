@@ -1,3 +1,16 @@
+
+// Partially update a book
+exports.patchBook = async (req, res) => {
+  try {
+    const updatedBook = await bookService.patchBook(req.params.id, req.body);
+    if (!updatedBook) {
+      return res.status(404).json({ message: 'Book not found' });
+    }
+    res.status(200).json(updatedBook);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 const bookService = require('../services/bookService');
 
 // Create a book
